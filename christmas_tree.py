@@ -7,17 +7,6 @@ import argparse
 
 init()  # цвета чтоб нормально отображались на разных осях наскок я понял
 
-# if __name__ == "__main__":
-#     for param in args:
-#         print(param)
-
-# colors = ['red',
-#           'yellow',
-#           'blue',
-#           'magenta',
-#           'cyan',
-#           'white']
-
 colors = ['red',
           'yellow',
           'blue',
@@ -32,13 +21,10 @@ parser.add_argument('--width', default=-1, type=int,
                     help='width of drawn tree (default: 41')
 parser.add_argument('-b', '--balls', nargs='+',
                     default=["0"], help='ball symbols')
-# parser.add_argument('-r', dest='width', action='store_const', const=-1)
-parser.add_argument('--triforce', action='store_true')
 parser.add_argument('--version', action='version',
                     version='%(prog)s 0.2 by Almaz Galiev')
 
 args = parser.parse_args(sys.argv[1:])
-triforce = args.triforce
 width = args.width
 height = args.height
 # make numbers odd
@@ -88,16 +74,7 @@ def simple_tree(height, ch='*', toys=["o"]):
     s += ' ' * (height-2) + colored('mWm', 'yellow') + '\n'
     return s
 
-
-# fooling around
-old = rand.choice([True, False])
-if triforce:
-    if old:
-        print(colored('\u00A0\u25B2\u00A0', "red"))
-    else:
-        print(colored('\u25B2', "red"))
-    print(colored('\u25B2\u00A0\u25B2', "red"))
-elif width == -1:
+if width == -1:
     print(simple_tree(height, toys=balls))
 else:
     print(tree(height, width, toys=balls))
